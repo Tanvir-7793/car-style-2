@@ -5,7 +5,7 @@ import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react"
 
 const Footer = () => {
     return (
-        <footer id="contact" className="bg-[#0b0b0b] text-white pt-24 pb-12">
+        <footer className="bg-[#0b0b0b] text-white pt-24 pb-12">
             <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div className="col-span-1 lg:col-span-1">
                     <div className="flex items-center gap-3 mb-8">
@@ -35,6 +35,7 @@ const Footer = () => {
                         <li><Link href="/#about" className="hover:text-primary transition-colors">About Us</Link></li>
                         <li><Link href="/services" className="hover:text-primary transition-colors">Pricing Plans</Link></li>
                         <li><Link href="/#reviews" className="hover:text-primary transition-colors">Reviews</Link></li>
+                        <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
                     </ul>
                 </div>
 

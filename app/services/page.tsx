@@ -1,11 +1,66 @@
-"use client";
 import React from "react";
 import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
 import WashingServices from "@/components/WashingServices";
 import PremiumServices from "@/components/PremiumServices";
+import { dbConnect } from "@/lib/mongodb";
+import Service from "@/models/Service";
 
-const ServicesPage = () => {
+const ServicesPage = async () => {
+    await dbConnect();
+    const docs = await Service.find().lean();
+
+    // Fully serialize to remove ObjectId and other non-plain values
+    const plainDocs = JSON.parse(JSON.stringify(docs)) as any[];
+
+    const washing = plainDocs
+        .filter((svc) => svc.type === "washing" || svc.type === "Washing")
+        .map((svc) => {
+            // Handle both old structure (pricing array) and new structure (single price)
+            let pricing = [];
+            if (svc.pricing && Array.isArray(svc.pricing) && svc.pricing.length > 0) {
+                // Old structure: pricing array
+                pricing = svc.pricing.map((p: any) => ({
+                    size: p.size,
+                    price: String(p.price || "0"),
+                }));
+            } else if (svc.price) {
+                // New structure: single price field
+                pricing = [
+                    { size: "Standard", price: String(svc.price) },
+                    { size: "Medium", price: String(parseInt(svc.price) * 1.2) },
+                    { size: "Large", price: String(parseInt(svc.price) * 1.4) }
+                ];
+            } else {
+                // Fallback pricing
+                pricing = [
+                    { size: "Small Cars", price: "450" },
+                    { size: "Medium Cars", price: "550" },
+                    { size: "Large Cars", price: "650" }
+                ];
+            }
+
+            return {
+                id: svc.slug || String(svc._id),
+                title: svc.title || svc.name || "Unnamed Service",
+                subtitle: svc.subtitle || svc.category || "Standard Service",
+                description: svc.description,
+                image: svc.image || "/car-washing-img1.jpg",
+                pricing: pricing,
+                features: svc.features || [],
+            };
+        });
+
+    const premium = plainDocs
+        .filter((svc) => svc.type === "premium")
+        .map((svc) => ({
+            title: svc.title,
+            description: svc.description,
+            image: svc.image,
+            tag: svc.tag,
+            features: svc.features || [],
+        }));
+
     return (
         <div className="min-h-screen bg-slate-50 selection:bg-primary selection:text-white pt-24 pb-20 relative overflow-hidden">
             {/* Background Decorative Elements */}
@@ -36,8 +91,8 @@ const ServicesPage = () => {
 
             {/* Render Components */}
             <div className="space-y-0">
-                <WashingServices />
-                <PremiumServices view="full" />
+                <WashingServices services={washing} />
+                <PremiumServices view="full" services={premium} />
             </div>
 
             {/* Call to Action */}
@@ -49,7 +104,7 @@ const ServicesPage = () => {
                         Book your appointment today and give your car the premium care it deserves.
                     </p>
                     <button className="bg-primary hover:bg-white hover:text-black text-white px-10 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30 relative z-10">
-                        Book Your Appointment
+                        <Link href="/contact">Book Your Appointment</Link>
                     </button>
                 </div>
             </div>

@@ -76,9 +76,11 @@ const Hero = () => {
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-18 md:mb-5">
-                    <button className="bg-primary hover:bg-blue-600 text-white px-10 py-4 rounded font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30">
-                        Book Your Wash
-                    </button>
+                    <Link href="/booking">
+                        <button className="bg-primary hover:bg-blue-600 text-white px-10 py-4 rounded font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30">
+                            Book Your Wash
+                        </button>
+                    </Link>
                     <Link href="/services">
                         <button className="border border-black/10 hover:border-black/30 text-black px-10 py-4 rounded font-bold transition-all bg-white/50 backdrop-blur-sm cursor-pointer">
                             View Services
