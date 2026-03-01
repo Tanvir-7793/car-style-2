@@ -21,14 +21,23 @@ import Image from "next/image";
 
 // Service Data
 const services = [
-    { id: "std-wash", name: "Standard Wash", price: 450, category: "Washing" },
-    { id: "dlx-wash", name: "Deluxe Wash", price: 800, category: "Washing" },
-    { id: "prm-wash", name: "Premium Wash", price: 2500, category: "Washing" },
-    { id: "lux-wash", name: "Luxury Wash", price: 7000, category: "Washing" },
-    { id: "prm-polish", name: "Premium Polish", price: 3500, category: "Detailing" },
-    { id: "int-detail", name: "Interior Detailing", price: 2000, category: "Detailing" },
-    { id: "ceramic", name: "Ceramic Coating", price: 15000, category: "Protection" },
-    { id: "ppf", name: "Paint Protection Film (PPF)", price: 45000, category: "Protection" },
+    // Washing Services
+    { id: "standard", name: "Standard Wash", price: 450, category: "Washing" },
+    { id: "deluxe", name: "Deluxe Wash", price: 600, category: "Washing" },
+    { id: "premium", name: "Premium Wash", price: 2500, category: "Washing" },
+    { id: "luxury", name: "Luxury Wash", price: 7000, category: "Washing" },
+    
+    // Premium Services
+    { id: "premium-polish", name: "Premium Polish", category: "Detailing" },
+    { id: "interior-detailing", name: "Interior Detailing", category: "Detailing" },
+    { id: "ppf", name: "Paint Protection Film (PPF)", category: "Protection" },
+    { id: "ceramic", name: "Ceramic Coating", price: null, category: "Protection" },
+    { id: "glass-cleaning", name: "Glass Cleaning", price: null, category: "Detailing" },
+    { id: "glass-coating", name: "Glass Coating", price: null, category: "Protection" },
+    { id: "graphene-coating", name: "Graphene Coating", price: null, category: "Protection" },
+    { id: "teflon-coating", name: "Teflon Coating", price: null, category: "Protection" },
+    { id: "headlight-cleaning", name: "Headlight Cleaning", price: null, category: "Detailing" },
+    { id: "headlight-restoration", name: "Headlight Restoration", price: null, category: "Detailing" },
 ];
 
 const carSizes = [
@@ -63,14 +72,61 @@ const BookingPage = () => {
         vehicleNumber: ""
     });
 
+    const [errors, setErrors] = useState({
+        name: "",
+        phone: "",
+        email: ""
+    });
+
+    const validatePhone = (phone: string) => {
+        const phoneRegex = /^[0-9]{10}$/;
+        return phoneRegex.test(phone.replace(/\s/g, ''));
+    };
+
+    const validateEmail = (email: string) => {
+        if (!email) return true; // Email is optional
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        
+        // Clear error when user starts typing
+        if (errors[name as keyof typeof errors]) {
+            setErrors(prev => ({ ...prev, [name]: "" }));
+        }
+    };
+
+    const validateForm = () => {
+        const newErrors = {
+            name: "",
+            phone: "",
+            email: ""
+        };
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Full name is required";
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Mobile number is required";
+        } else if (!validatePhone(formData.phone)) {
+            newErrors.phone = "Mobile number must be exactly 10 digits";
+        }
+
+        if (formData.email && !validateEmail(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+        }
+
+        setErrors(newErrors);
+        return !newErrors.name && !newErrors.phone && !newErrors.email;
     };
 
     // Calculations
-    const basePrice = selectedService.price;
-    const sizeSurge = selectedSize.multiplier > 1 ? (basePrice * (selectedSize.multiplier - 1)) : 0;
+    const basePrice = selectedService.price || 0;
+    const sizeSurge = selectedSize.multiplier > 1 && selectedService.price ? (basePrice * (selectedSize.multiplier - 1)) : 0;
     const subtotal = basePrice + sizeSurge;
     const discount = 0; // Can implement promo logic
     const finalAmount = subtotal - discount;
@@ -79,8 +135,13 @@ const BookingPage = () => {
         setSubmitMessage(null);
         setSubmitError(null);
 
-        if (!formData.name || !formData.phone || !formData.vehicleModel || !selectedDate || !selectedTime) {
-            setSubmitError("Please fill all required fields (name, phone, vehicle, date & time).");
+        if (!validateForm()) {
+            setSubmitError("Please fix the validation errors below.");
+            return;
+        }
+
+        if (!formData.vehicleModel || !selectedDate || !selectedTime) {
+            setSubmitError("Please fill all required fields (vehicle model, date & time).");
             return;
         }
 
@@ -157,7 +218,9 @@ const BookingPage = () => {
                                         onChange={(e) => setSelectedService(services.find(s => s.id === e.target.value) || services[0])}
                                     >
                                         {services.map(s => (
-                                            <option key={s.id} value={s.id}>{s.name} (Starts at ₹{s.price})</option>
+                                            <option key={s.id} value={s.id}>
+                                                {s.name}{s.price ? ` (Starts at ₹${s.price})` : ''}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>
@@ -252,45 +315,61 @@ const BookingPage = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name *</label>
                                     <div className="relative">
                                         <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                                         <input
                                             type="text"
                                             name="name"
                                             placeholder="Enter your name"
-                                            className="w-full bg-gray-50 border border-black/5 rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20"
+                                            className={`w-full bg-gray-50 border rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20 ${
+                                                errors.name ? "border-red-500" : "border-black/5"
+                                            }`}
                                             onChange={handleInputChange}
                                         />
                                     </div>
+                                    {errors.name && (
+                                        <p className="text-red-500 text-xs font-semibold mt-1">{errors.name}</p>
+                                    )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Mobile Number</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Mobile Number *</label>
                                     <div className="relative">
                                         <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                                         <input
                                             type="tel"
                                             name="phone"
-                                            placeholder="+91 00000 00000"
-                                            className="w-full bg-gray-50 border border-black/5 rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20"
+                                            placeholder="Enter 10 digit mobile number"
+                                            maxLength={10}
+                                            className={`w-full bg-gray-50 border rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20 ${
+                                                errors.phone ? "border-red-500" : "border-black/5"
+                                            }`}
                                             onChange={handleInputChange}
                                         />
                                     </div>
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-xs font-semibold mt-1">{errors.phone}</p>
+                                    )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email Address</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email Address (Optional)</label>
                                     <div className="relative">
                                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                                         <input
                                             type="email"
                                             name="email"
                                             placeholder="your@email.com"
-                                            className="w-full bg-gray-50 border border-black/5 rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20"
+                                            className={`w-full bg-gray-50 border rounded-xl pl-12 pr-4 py-4 text-gray-900 font-semibold outline-none focus:ring-2 focus:ring-primary/20 ${
+                                                errors.email ? "border-red-500" : "border-black/5"
+                                            }`}
                                             onChange={handleInputChange}
                                         />
                                     </div>
+                                    {errors.email && (
+                                        <p className="text-red-500 text-xs font-semibold mt-1">{errors.email}</p>
+                                    )}
                                 </div>
 
                                 <div className="space-y-2">

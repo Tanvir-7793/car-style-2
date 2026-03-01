@@ -12,7 +12,7 @@ const TopInfoBar = () => {
                 </div>
             </div>
             <div className="flex gap-4">
-                Mon-Sat: 8AM-8PM | Sun: 9AM-5PM
+                Mon-Sat: 9AM-6PM | Sun: 9AM-6PM
             </div>
         </div>
     );

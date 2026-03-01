@@ -99,7 +99,7 @@ const ContactCTA = () => {
                                         <p className="text-xs font-bold text-gray-900">Karanje Peth, Satara</p>
                                     </div>
                                     <a
-                                        href="https://www.google.com/maps?q=17.693748,73.995262"
+                                        href="https://www.google.com/maps/dir/?api=1&destination=307/24+Basappa+peth,+Opp.+Yashwant+Hospital,+Karanje+Peth,+Satara,+Maharashtra+415001"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="bg-black text-white p-2 rounded-lg hover:bg-primary transition-colors"

@@ -22,7 +22,7 @@ const Footer = () => {
                     </p>
                     <div className="flex gap-4">
                         <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Facebook className="w-5 h-5" /></a>
-                        <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Instagram className="w-5 h-5" /></a>
+                        <a href="https://www.instagram.com/car_style___/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Instagram className="w-5 h-5" /></a>
                         <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Twitter className="w-5 h-5" /></a>
                     </div>
                 </div>
@@ -44,11 +44,11 @@ const Footer = () => {
                     <ul className="space-y-4 text-gray-400 text-sm">
                         <li className="flex justify-between">
                             <span>Mon-Sat:</span>
-                            <span className="text-white font-medium">8:00 AM - 8:00 PM</span>
+                            <span className="text-white font-medium">9:00 AM - 6:00 PM</span>
                         </li>
                         <li className="flex justify-between">
                             <span>Sunday:</span>
-                            <span className="text-white font-medium">9:00 AM - 5:00 PM</span>
+                            <span className="text-white font-medium">9:00 AM - 6:00 PM</span>
                         </li>
                         <li className="mt-8">
                             <div className="bg-primary/10 border border-primary/20 p-4 rounded-lg">

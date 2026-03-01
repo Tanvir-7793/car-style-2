@@ -25,22 +25,67 @@ const ContactPage = () => {
         message: "",
     });
 
+    const [errors, setErrors] = useState({
+        name: "",
+        phone: ""
+    });
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState<string | null>(null);
     const [submitError, setSubmitError] = useState<string | null>(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [submittedData, setSubmittedData] = useState({
+        name: "",
+        phone: "",
+        subject: "Service Inquiry"
+    });
+
+    const validatePhone = (phone: string) => {
+        const phoneRegex = /^[0-9]{10}$/;
+        return phoneRegex.test(phone.replace(/\s/g, ''));
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        
+        // Clear error when user starts typing
+        if (errors[name as keyof typeof errors]) {
+            setErrors(prev => ({ ...prev, [name]: "" }));
+        }
+    };
+
+    const validateForm = () => {
+        const newErrors = {
+            name: "",
+            phone: ""
+        };
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Full name is required";
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Mobile number is required";
+        } else if (!validatePhone(formData.phone)) {
+            newErrors.phone = "Mobile number must be exactly 10 digits";
+        }
+
+        setErrors(newErrors);
+        return !newErrors.name && !newErrors.phone;
     };
 
     const handleSubmit = async () => {
         setSubmitMessage(null);
         setSubmitError(null);
 
-        if (!formData.name || !formData.phone || !formData.subject || !formData.message) {
-            setSubmitError("Please fill all fields before submitting.");
+        if (!validateForm()) {
+            setSubmitError("Please fix the validation errors below.");
+            return;
+        }
+
+        if (!formData.subject || !formData.message) {
+            setSubmitError("Please fill all required fields (subject and message).");
             return;
         }
 
@@ -58,6 +103,11 @@ const ContactPage = () => {
             }
 
             setSubmitMessage("Thank you! Your message has been sent. We will contact you soon.");
+            setSubmittedData({
+                name: formData.name,
+                phone: formData.phone,
+                subject: formData.subject
+            });
             setShowSuccessModal(true);
             setFormData({
                 name: "",
@@ -193,7 +243,7 @@ const ContactPage = () => {
                             ></iframe>
                             <div className="absolute bottom-6 left-6 right-6">
                                 <a
-                                    href="https://www.google.com/maps?q=17.693748,73.995262"
+                                    href="https://www.google.com/maps/dir/?api=1&destination=307/24+Basappa+peth,+Opp.+Yashwant+Hospital,+Karanje+Peth,+Satara,+Maharashtra+415001"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold shadow-2xl hover:bg-primary hover:text-white transition-all group"
@@ -215,26 +265,37 @@ const ContactPage = () => {
                         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name *</label>
                                     <input
                                         type="text"
                                         name="name"
                                         placeholder="Enter your name"
-                                        className="w-full bg-gray-50 border border-black/5 rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none"
+                                        className={`w-full bg-gray-50 border rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none ${
+                                            errors.name ? "border-red-500" : "border-black/5"
+                                        }`}
                                         value={formData.name}
                                         onChange={handleChange}
                                     />
+                                    {errors.name && (
+                                        <p className="text-red-500 text-xs font-semibold mt-1">{errors.name}</p>
+                                    )}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Phone Number</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Phone Number *</label>
                                     <input
                                         type="tel"
                                         name="phone"
-                                        placeholder="+91 XXXXX XXXXX"
-                                        className="w-full bg-gray-50 border border-black/5 rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none"
+                                        placeholder="Enter 10 digit mobile number"
+                                        maxLength={10}
+                                        className={`w-full bg-gray-50 border rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none ${
+                                            errors.phone ? "border-red-500" : "border-black/5"
+                                        }`}
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-xs font-semibold mt-1">{errors.phone}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -371,7 +432,7 @@ const ContactPage = () => {
                                     Message Sent!
                                 </h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    Thank you, {formData.name || "Guest"}! Your message has been received.
+                                    Thank you, {submittedData.name || "Guest"}! Your message has been received.
                                     Our team will get back to you shortly on your provided phone number.
                                 </p>
 
@@ -381,15 +442,15 @@ const ContactPage = () => {
                                 <div className="mt-2 rounded-2xl bg-gray-50 border border-black/5 p-4 text-left text-xs space-y-1">
                                     <p className="flex justify-between">
                                         <span className="text-gray-500">Name</span>
-                                        <span className="font-semibold text-gray-900">{formData.name || "Not set"}</span>
+                                        <span className="font-semibold text-gray-900">{submittedData.name || "Not set"}</span>
                                     </p>
                                     <p className="flex justify-between">
                                         <span className="text-gray-500">Phone</span>
-                                        <span className="font-semibold text-gray-900">{formData.phone || "Not set"}</span>
+                                        <span className="font-semibold text-gray-900">{submittedData.phone || "Not set"}</span>
                                     </p>
                                     <p className="flex justify-between">
                                         <span className="text-gray-500">Subject</span>
-                                        <span className="font-semibold text-gray-900">{formData.subject}</span>
+                                        <span className="font-semibold text-gray-900">{submittedData.subject}</span>
                                     </p>
                                 </div>
 
