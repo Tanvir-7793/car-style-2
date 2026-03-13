@@ -31,7 +31,7 @@ export const washingServices = [
     description:
       "Go beyond the basics with specialized interior conditioning and complete underbody cleaning by lifting the vehicle.",
     image:
-      "https://images.unsplash.com/photo-1552930294-6b595f4c2974?q=80&w=2070&auto=format&fit=crop",
+      "/DeluxeWash.jpeg",
     pricing: [
       { size: "Small Cars", price: "600" },
       { size: "Medium Cars", price: "800" },
@@ -75,32 +75,7 @@ export const washingServices = [
       "Chassis Restoration",
     ],
   },
-  {
-    id: "luxury",
-    title: "Luxury Wash",
-    subtitle: "Ultimate Detailing",
-    description:
-      "The gold standard: full interior detailing and exterior high-gloss polishing with minor scratch removal.",
-    image:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2083&auto=format&fit=crop",
-    pricing: [
-      { size: "Small Cars", price: "7000" },
-      { size: "Medium Cars", price: "9000" },
-      { size: "Large Cars", price: "12000" },
-    ],
-    features: [
-      "(All 17 Steps from Premium)",
-      "18. Deep Interior Cleaning",
-      "19. Exterior Wax Polishing",
-      "Full Doors & Roof Detailing",
-      "AC Vents & Console Box",
-      "High-gloss Finish",
-      "Minor Scratch Removal",
-      "Engine Bay Cleaning",
-      "Emblem Cleaning",
-      "Full Interior Sanitization",
-    ],
-  },
+ 
 ];
 
 export const premiumServices = [
@@ -108,7 +83,7 @@ export const premiumServices = [
     title: "Premium Polish",
     description:
       "A comprehensive detailing package including deep interior cleaning and exterior protection for a showroom finish.",
-    image: "/premium-services-img01.jpg",
+    image: "/PremiumPolish01.jpeg",
     tag: "Bestseller",
     features: [
       "Interior Steam Wash",
@@ -181,14 +156,7 @@ export const premiumServices = [
     tag: "Advanced",
     features: ["Superior Heat Resistance", "UV & Scratch Shield", "Ultimate Durability"],
   },
-  {
-    title: "Teflon Coating",
-    description:
-      "A multi-step PTFE-based sealant application that provides a protective barrier against UV rays, dirt, and environmental damage. Buffed to a high gloss for a flawless finish.",
-    image: "/premium-services-img8.jpg",
-    tag: "Classic Protection",
-    features: ["PTFE-based Sealant", "UV & Dirt Barrier", "High Gloss Finish"],
-  },
+  
   {
     title: "Headlight Cleaning",
     description:

@@ -1,7 +1,9 @@
 import Hero from "@/components/Hero";
 import WashingServices from "@/components/WashingServices";
 import PremiumServices from "@/components/PremiumServices";
+import VideoGallery from "@/components/VideoGallery";
 import WhyUs from "@/components/WhyUs";
+import Testimonials from "@/components/Testimonials";
 import ContactCTA from "@/components/ContactCTA";
 
 export default function Home() {
@@ -10,7 +12,9 @@ export default function Home() {
       <Hero />
       <WashingServices />
       <PremiumServices />
+      <VideoGallery />
       <WhyUs />
+      <Testimonials />
       <ContactCTA />
     </div>
   );
