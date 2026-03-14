@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import ScrollFloat from "./ScrollFloat";
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -83,16 +84,18 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-20 md:py-24 bg-gray-100 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 bg-blue-50">
+    <section id="Testimonials" className="py-20 md:py-24 bg-gradient-to-r from-blue-50 to-gray-100 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <ScrollFloat
+        
+          animationDuration={0.1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=50%'
+          stagger={0.03}
+        >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
               Customer Stories
             </span>
@@ -102,7 +105,7 @@ const Testimonials = () => {
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
               Don't just take our word for it. Here's what our valued customers have to say about their experience with CAR STYLE.
             </p>
-          </motion.div>
+          </ScrollFloat>
         </div>
 
         {/* Testimonials Carousel */}
@@ -191,17 +194,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Auto-play Controls */}
-        <div className="text-center mt-12">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setActiveIndex((prev) => (prev + 1) % testimonials.length)}
-            className="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-blue-600 transition-all duration-300 shadow-xl shadow-primary/20"
-          >
-            Read More Reviews
-          </motion.button>
-        </div>
+        
       </div>
     </section>
   );

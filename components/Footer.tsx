@@ -18,12 +18,10 @@ const Footer = () => {
                         />
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed mb-8">
-                        CAR STYLE is your premier car wash and detailing destination. Providing high-end care for vehicles since 2012. We bring the shine back to your drive.
+                        CAR STYLE is your premier car wash and detailing destination. We bring the shine back to your drive.
                     </p>
                     <div className="flex gap-4">
-                        <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Facebook className="w-5 h-5" /></a>
                         <a href="https://www.instagram.com/car_style___/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Instagram className="w-5 h-5" /></a>
-                        <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-primary transition-colors hover:scale-110"><Twitter className="w-5 h-5" /></a>
                     </div>
                 </div>
 
@@ -32,9 +30,9 @@ const Footer = () => {
                     <ul className="space-y-4 text-gray-400 text-sm font-space">
                         <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
                         <li><Link href="/services" className="hover:text-primary transition-colors">Our Services</Link></li>
-                        <li><Link href="/#about" className="hover:text-primary transition-colors">About Us</Link></li>
-                        <li><Link href="/services" className="hover:text-primary transition-colors">Pricing Plans</Link></li>
-                        <li><Link href="/#reviews" className="hover:text-primary transition-colors">Reviews</Link></li>
+                        <li><Link href="/About" className="hover:text-primary transition-colors">About Us</Link></li>
+                        <li><Link href="/#why-us" className="hover:text-primary transition-colors">Why Us</Link></li>
+                        <li><Link href="/#Testimonials" className="hover:text-primary transition-colors">Reviews</Link></li>
                         <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
                     </ul>
                 </div>

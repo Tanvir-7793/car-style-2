@@ -49,9 +49,7 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                 {/* Active Service Content */}
                 <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
                     <div className="lg:w-1/2 w-full">
-                        <span className="text-primary font-bold uppercase tracking-widest text-[10px] md:text-xs block mb-1">
-                            {services[activeService].subtitle}
-                        </span>
+                        
                         <ScrollFloat
                             animationDuration={0.1}
                             ease='back.inOut(2)'
@@ -59,14 +57,18 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                             scrollEnd='bottom bottom-=50%'
                             stagger={0.03}
                         >
+                            <span className="text-primary font-bold uppercase tracking-widest text-[10px] md:text-xs block mb-1">
+                                {services[activeService].subtitle}
+                            </span>
                             <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
                                 {services[activeService].title}
                             </h2>
-                        </ScrollFloat>
-
-                        <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
+                            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
                             {services[activeService].description}
                         </p>
+                        </ScrollFloat>
+
+                        
 
                         {/* Pricing Grid */}
                         <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-10">

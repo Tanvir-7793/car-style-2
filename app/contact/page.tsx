@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import { PiNumberOne } from "react-icons/pi";
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -355,7 +356,7 @@ const ContactPage = () => {
                         {/* 6. Trust Section inside Form Card */}
                         <div className="mt-12 pt-8 border-t border-black/5 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                             <div>
-                                <p className="text-2xl font-bold text-gray-900">500+</p>
+                                <p className="text-2xl font-bold text-gray-900">100+</p>
                                 <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Happy Customers</p>
                             </div>
                             <div>
@@ -379,7 +380,13 @@ const ContactPage = () => {
             <section className="max-w-7xl mx-auto px-6 md:px-8 mt-20">
                 <div className="bg-black text-white rounded-[2.5rem] p-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 blur-[100px] pointer-events-none"></div>
-
+                    <div className="space-y-4">
+                        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mx-auto">
+                            <PiNumberOne className="text-primary w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold">No.1 in Satara for Car Detailing</h3>
+                        <p className="text-gray-400 text-sm">The leading car detailing service in Satara.</p>
+                    </div>
                     <div className="space-y-4">
                         <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mx-auto">
                             <Star className="text-primary w-8 h-8" />
@@ -396,13 +403,6 @@ const ContactPage = () => {
                         <p className="text-gray-400 text-sm">Your vehicle is handled with extreme care and fully insured.</p>
                     </div>
 
-                    <div className="space-y-4">
-                        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mx-auto">
-                            <Users className="text-primary w-8 h-8" />
-                        </div>
-                        <h3 className="text-xl font-bold">12+ Years Exp</h3>
-                        <p className="text-gray-400 text-sm">Over a decade of experience in premium automotive detailing.</p>
-                    </div>
                 </div>
             </section>
 

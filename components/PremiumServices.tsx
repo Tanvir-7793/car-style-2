@@ -19,7 +19,7 @@ const PremiumServices: React.FC<PremiumServicesProps> = ({ view = "home", servic
 
 
     return (
-        <section id="services" className={`py-24 ${isFull ? 'bg-transparent' : 'bg-blue-50'}`}>
+        <section id="services" className={`py-24 ${isFull ? 'bg-transparent' : ' bg-gradient-to-b from-blue-100 to-gray-100'}`}>
             <div className="max-w-7xl mx-auto px-8">
                 <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
                     <ScrollFloat

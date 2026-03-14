@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Instagram, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import ScrollFloat from "./ScrollFloat";
 
 const VideoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,12 +110,13 @@ const VideoGallery = () => {
     <section className="py-20 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Section Header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <ScrollFloat
+            className="text-center mb-16"
+          animationDuration={0.1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=50%'
+          stagger={0.03}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
           See Our Craftsmanship
@@ -128,7 +130,7 @@ const VideoGallery = () => {
         <p className="text-gray-400 text-sm mt-2 max-w-2xl mx-auto">
           💡 Click on any video to watch the full transformation on Instagram
         </p>
-        </motion.div>
+        </ScrollFloat>
 
         {/* Instagram Reels Style Container */}
         <div className="max-w-4xl mx-auto">
