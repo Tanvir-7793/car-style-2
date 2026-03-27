@@ -16,7 +16,35 @@ const dmSerif = DM_Serif_Display({
 export const metadata: Metadata = {
   title: "CAR STYLE | Premium Detailing Studio",
   description: "CAR STYLE offers professional car care that keeps your vehicle looking pristine. Premium washing, detailing, and protection services.",
+  keywords: "car detailing, car washing, car care in satara, premium detailing studio, ceramic coating, car protection, luxury car care,book car wash in Satara,car wash near me Satara,affordable car wash Satara,bike washing service Satara,car polishing Satara,top car wash services in Satara, professional car care, car maintenance, car care services in satara, car care near me, car care in satara, car wash satara, car cleaning satara, doorstep car wash satara, car polish satara",
+  authors: [{ name: "CAR STYLE" }],
+  creator: "Tanvir Mujawar",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "CAR STYLE - Premium Car Detailing Studio in Satara",
+    description: "Professional car detailing, washing, and protection services in Satara. Experience luxury car care with ceramic coating, interior detailing, and doorstep service.",
+    url: "https://carstyle-satara.com",
+    siteName: "CAR STYLE Satara",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "CAR STYLE - Premium Car Detailing Studio Satara",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  metadataBase: new URL("https://carstyle-satara.com"),
+  alternates: {
+    canonical: "https://carstyle-satara.com",
+  },
 };
+
 
 import TopInfoBar from "@/components/TopInfoBar";
 import Navbar from "@/components/Navbar";

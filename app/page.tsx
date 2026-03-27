@@ -5,6 +5,11 @@ import VideoGallery from "@/components/VideoGallery";
 import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import ContactCTA from "@/components/ContactCTA";
+export const metadata = {
+  title: "Best Car Washing Service in Satara",
+  description:
+    "Looking for car wash in Satara? We provide doorstep car cleaning, interior cleaning, and polishing at affordable prices.",
+};
 
 export default function Home() {
   return (
