@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import LogoLoop from "@/components/LogoLoop";
 import {
     SiBmw,
@@ -53,12 +54,18 @@ const Hero = () => {
                 {bgImages.map((img, index) => (
                     <div
                         key={img}
-                        className={`absolute inset-0 bg-cover bg-position-[50%_center] max-md:bg-position-[60%_center] max-md:scale-110 transition-opacity duration-1000 ${index === currentBg ? "opacity-100" : "opacity-0"
+                        className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBg ? "opacity-100 z-10" : "opacity-0 z-0"
                             }`}
-                        style={{
-                            backgroundImage: `url('${img}')`,
-                        }}
-                    />
+                    >
+                        <Image
+                            src={img}
+                            alt={`Hero Background ${index + 1}`}
+                            fill
+                            priority={index === 0}
+                            sizes="100vw"
+                            className="object-cover object-[50%_center] max-md:object-[60%_center] max-md:scale-110"
+                        />
+                    </div>
                 ))}
                 {/* Dark gradient overlay for readability */}
                 <div className="absolute inset-0 bg-linear-to-r from-black via-black/40 to-transparent"></div>
@@ -67,7 +74,9 @@ const Hero = () => {
             <div className="relative z-10 max-w-2xl">
                 <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-5 md:mb-1 text-white">
                     <span className="font-dm-serif">CAR STYLE</span> <br />
-                    <span className="  text-5xl md:text-6xl gap-2 text-primary italic">Premium Detailing Studio</span>
+                    <span className="font-niconne text-6xl md:text-7xl gap-2 text-primary italic tracking-wider">Premium </span><br />
+                    <span className="font-niconne text-5xl md:text-7xl gap-2 text-primary italic tracking-wider">Detailing </span>
+                    <span className="font-niconne text-5xl md:text-7xl gap-2 text-primary italic tracking-wider">Studio</span>
                 </h1>
 
                 <p className="text-lg md:text-2sm text-gray-300 mb-10 leading-relaxed max-w-xl">

@@ -30,6 +30,7 @@ const Footer = () => {
                     <ul className="space-y-4 text-gray-400 text-sm font-space">
                         <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
                         <li><Link href="/services" className="hover:text-primary transition-colors">Our Services</Link></li>
+                        <li><Link href="/gallery" className="hover:text-primary transition-colors">Gallery</Link></li>
                         <li><Link href="/About" className="hover:text-primary transition-colors">About Us</Link></li>
                         <li><Link href="/#why-us" className="hover:text-primary transition-colors">Why Us</Link></li>
                         <li><Link href="/#Testimonials" className="hover:text-primary transition-colors">Reviews</Link></li>
@@ -79,8 +80,14 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-8 pt-12 border-t border-white/5 text-center text-gray-500 text-xs">
+            <div className="max-w-7xl mx-auto px-8 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
                 <p>© 2026 CAR STYLE Detailer Studio. All Rights Reserved.</p>
+                <p>
+                    Built with <span className="text-red-500">♥</span> by{' '}
+                    <a href="https://wa.me/919860193973" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                        <span className="font-bold tracking-wider">WEBNIVO</span> <span className="font-medium text-xs">web studio</span>
+                    </a>
+                </p>
             </div>
         </footer>
     );

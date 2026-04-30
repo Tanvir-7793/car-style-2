@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Serif_Display } from "next/font/google";
+import { Space_Grotesk, DM_Serif_Display, Niconne } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -11,6 +11,12 @@ const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-dm-serif",
+});
+
+const niconne = Niconne({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-niconne",
 });
 
 export const metadata: Metadata = {
@@ -49,6 +55,7 @@ export const metadata: Metadata = {
 import TopInfoBar from "@/components/TopInfoBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingCallButton from "@/components/FloatingCallButton";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 export default function RootLayout({
@@ -57,11 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${niconne.variable}`}>
       <body className="antialiased">
         <TopInfoBar />
         <Navbar />
         {children}
+        <FloatingCallButton />
         <Footer />
         <Analytics />
         <SpeedInsights />

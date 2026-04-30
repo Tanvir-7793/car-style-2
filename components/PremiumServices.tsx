@@ -45,6 +45,8 @@ const PremiumServices: React.FC<PremiumServicesProps> = ({ view = "home", servic
                                     src={service.image}
                                     alt={service.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    priority={i < 2}
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">

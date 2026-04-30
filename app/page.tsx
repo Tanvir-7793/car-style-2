@@ -3,7 +3,7 @@ import WashingServices from "@/components/WashingServices";
 import PremiumServices from "@/components/PremiumServices";
 import VideoGallery from "@/components/VideoGallery";
 import WhyUs from "@/components/WhyUs";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials";
 import ContactCTA from "@/components/ContactCTA";
 export const metadata = {
   title: "Best Car Washing Service in Satara",
@@ -19,7 +19,7 @@ export default function Home() {
       <PremiumServices />
       <VideoGallery />
       <WhyUs />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <ContactCTA />
     </div>
   );

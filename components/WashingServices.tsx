@@ -105,12 +105,14 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                     <div className="lg:w-1/2 w-full relative">
                                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-black/5 aspect-4/3 lg:aspect-video">
                                 <Image
-                                key={services[activeService].image}
-                                src={services[activeService].image}
-                                alt={services[activeService].title}
-                                fill
-                                className="object-cover transition-all duration-700 hover:scale-105"
-                            />
+                                    key={services[activeService].image}
+                                    src={services[activeService].image}
+                                    alt={services[activeService].title}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    priority={true}
+                                    className="object-cover transition-all duration-700 hover:scale-105"
+                                />
                             <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
                         </div>
                     </div>

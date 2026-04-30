@@ -16,6 +16,7 @@
   --color-accent: var(--accent);
   --font-space: var(--font-space);
   --font-dm-serif: var(--font-dm-serif);
+  --font-niconne: var(--font-niconne);
   --animate-spin-slow: spin 8s linear infinite;
 }
 
