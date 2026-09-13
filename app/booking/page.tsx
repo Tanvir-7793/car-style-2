@@ -69,7 +69,8 @@ const BookingPage = () => {
         email: "",
         city: "Satara",
         vehicleModel: "",
-        vehicleNumber: ""
+        vehicleNumber: "",
+        website: "", // honeypot - must stay empty
     });
 
     const [errors, setErrors] = useState({
@@ -157,6 +158,7 @@ const BookingPage = () => {
                     city: formData.city,
                     vehicleModel: formData.vehicleModel,
                     vehicleNumber: formData.vehicleNumber,
+                    website: formData.website,
                     selectedService,
                     selectedSize,
                     pricing: {
@@ -385,6 +387,8 @@ const BookingPage = () => {
                                         />
                                     </div>
                                 </div>
+                                {/* Honeypot - hidden from users */}
+                                <input type="text" name="website" value={formData.website} onChange={handleInputChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                             </div>
                         </section>
 

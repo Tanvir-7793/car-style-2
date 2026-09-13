@@ -24,6 +24,7 @@ const ContactPage = () => {
         phone: "",
         subject: "Service Inquiry",
         message: "",
+        website: "", // honeypot
     });
 
     const [errors, setErrors] = useState({
@@ -115,6 +116,7 @@ const ContactPage = () => {
                 phone: "",
                 subject: "Service Inquiry",
                 message: "",
+                website: "",
             });
         } catch (err: any) {
             setSubmitError(err.message || "Something went wrong. Please try again.");
@@ -132,15 +134,16 @@ const ContactPage = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-                        Get In Touch
+                        Contact Best Car Washing Center in Satara
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-dm-serif text-gray-900 mb-6">
-                        We’re Here to Make Your <br />
-                        <span className="text-primary italic">Car Shine</span>
+                    <h1 className="text-4xl md:text-6xl font-dm-serif text-gray-900 mb-6">
+                        Contact Best <br />
+                        <span className="text-primary italic">Car Washing Shop in Satara</span>
                     </h1>
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-                        Have questions or want to book directly? Our team is ready to help you with
-                        professional advice and premium detailing services.
+                        Reach our <strong>car detailing center in Satara</strong> at Karanje Peth - call{" "}
+                        <a href="tel:+917058623593" className="text-primary font-bold hover:underline">7058623593</a> for the
+                        best car washing & detailing services in Satara.
                     </p>
                 </motion.div>
             </section>
@@ -327,6 +330,8 @@ const ContactPage = () => {
                                     onChange={handleChange}
                                 ></textarea>
                             </div>
+
+                            <input type="text" name="website" value={(formData as any).website} onChange={handleChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
                             <motion.button
                                 whileHover={{ scale: 1.01 }}

@@ -18,24 +18,24 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveService((prev) => (prev + 1) % services.length);
-        }, 15000);
+        }, 8000);
 
         return () => clearInterval(interval);
-    }, [activeService]); // Reset interval if user manually changes service
+    }, [services.length]);
 
     return (
         <section id="about" className="py-12 md:py-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
                 {/* Service Tabs */}
-                <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 md:mb-16">
+                <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 mb-10 md:mb-16 overflow-x-auto scrollbar-none snap-x snap-mandatory px-1 -mx-6 md:mx-0 scroll-smooth">
                     {services.map((service, index) => (
 
                         <button
                             key={service.id}
                             onClick={() => setActiveService(index)}
-                            className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold transition-all duration-300 ${activeService === index
+                            className={`shrink-0 snap-center px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold transition-all duration-300 cursor-pointer ${activeService === index
                                 ? "bg-primary text-white shadow-lg shadow-primary/30"
-                                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                                : "bg-gray-100 text-gray-500 hover:bg-gray-200 active:scale-95"
                                 }`}
                         >
 
@@ -110,7 +110,8 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                                     alt={services[activeService].title}
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 50vw"
-                                    priority={true}
+                                    priority={false}
+                                    loading="lazy"
                                     className="object-cover transition-all duration-700 hover:scale-105"
                                 />
                             <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>

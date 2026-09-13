@@ -48,7 +48,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <main id="home" className="relative min-h-[calc(100vh-120px)] flex flex-col justify-center px-8 lg:px-24 pt-24 md:pt-0 overflow-hidden">
+        <main id="home" className="relative min-h-[calc(100svh-88px)] md:min-h-[calc(100dvh-88px)] flex flex-col justify-center px-8 lg:px-24 py-10 md:py-12 overflow-hidden">
             {/* Background Images Loop */}
             <div className="absolute inset-0 z-0 bg-black">
                 {bgImages.map((img, index) => (
@@ -59,7 +59,7 @@ const Hero = () => {
                     >
                         <Image
                             src={img}
-                            alt={`Hero Background ${index + 1}`}
+                            alt={`Best car washing center in Satara - CAR STYLE detailing shop background ${index + 1}`}
                             fill
                             priority={index === 0}
                             sizes="100vw"
@@ -67,31 +67,34 @@ const Hero = () => {
                         />
                     </div>
                 ))}
-                {/* Dark gradient overlay for readability */}
-                <div className="absolute inset-0 bg-linear-to-r from-black via-black/40 to-transparent"></div>
+                {/* Heavy dark overlay - left side blur black effect */}
+                <div className="absolute inset-0 bg-black/70"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/30"></div>
+                {/* Extra left blur fade - solid black with soft blur */}
+                <div className="absolute inset-y-0 left-0 w-full md:w-[68%] bg-gradient-to-r from-black via-black to-transparent opacity-95"></div>
+                <div className="absolute inset-y-0 left-0 w-full md:w-[58%] bg-black/90 backdrop-blur-[1px]"></div>
             </div>
 
             <div className="relative z-10 max-w-2xl">
-                <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-5 md:mb-1 text-white">
+                <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-5 md:mb-1 text-white">
                     <span className="font-dm-serif">CAR STYLE</span> <br />
-                    <span className="font-niconne text-6xl md:text-7xl gap-2 text-primary italic tracking-wider">Premium </span><br />
-                    <span className="font-niconne text-5xl md:text-7xl gap-2 text-primary italic tracking-wider">Detailing </span>
-                    <span className="font-niconne text-5xl md:text-7xl gap-2 text-primary italic tracking-wider">Studio</span>
+                    <span className="font-niconne text-5xl md:text-6xl gap-2 text-primary italic tracking-wider">Best Car Washing Center</span><br />
+                    <span className="text-2xl md:text-3xl font-bold tracking-wide text-white/90">in Satara </span>
+                    <span className="font-niconne text-3xl md:text-4xl gap-2 text-primary italic tracking-wider">— Detailing Shop</span>
                 </h1>
 
-                <p className="text-lg md:text-2sm text-gray-300 mb-10 leading-relaxed max-w-xl">
-                    Your Car Deserves The Best Care !
-                    Professional car care that keeps your vehicle looking pristine.
+                <p className="text-base md:text-lg text-gray-300 mb-10 leading-relaxed max-w-xl">
+                    No.1 <strong className="text-white font-semibold">car detailing center in Satara</strong> at Karanje Peth. Premium wash from ₹450, ceramic coating, PPF & interior detailing. Your car deserves the best care!
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-18 md:mb-5">
                     <Link href="/booking">
-                        <button className="bg-primary hover:bg-blue-600 text-white px-10 py-4 rounded font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30">
+                        <button className="bg-primary hover:bg-blue-600 text-white px-10 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30 cursor-pointer">
                             Book Your Wash
                         </button>
                     </Link>
                     <Link href="/services">
-                        <button className="border border-black/10 hover:border-black/30 text-black px-10 py-4 rounded font-bold transition-all bg-white/50 backdrop-blur-sm cursor-pointer">
+                        <button className="bg-white hover:bg-gray-100 text-gray-900 border border-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg cursor-pointer">
                             View Services
                         </button>
                     </Link>

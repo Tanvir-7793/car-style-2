@@ -5,17 +5,29 @@ import WashingServices from "@/components/WashingServices";
 import PremiumServices from "@/components/PremiumServices";
 import { dbConnect } from "@/lib/mongodb";
 import Service from "@/models/Service";
+import { washingServices as fallbackWashing, premiumServices as fallbackPremium } from "@/data/services";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Car Detailing Center in Satara | Services - Car Washing Shop",
+  description: "Car detailing center in Satara - CAR STYLE services: Standard/Deluxe/Premium wash, ceramic coating, PPF, interior detailing at Karanje Peth. Best car washing shop in Satara.",
+};
+
+export const dynamic = "force-dynamic";
 
 const ServicesPage = async () => {
-    await dbConnect();
-    const docs = await Service.find().lean();
+    let washing: any[] = fallbackWashing;
+    let premium: any[] = fallbackPremium;
 
-    // Fully serialize to remove ObjectId and other non-plain values
-    const plainDocs = JSON.parse(JSON.stringify(docs)) as any[];
+    try {
+        await dbConnect();
+        const docs = await Service.find().lean();
+        const plainDocs = JSON.parse(JSON.stringify(docs)) as any[];
 
-    const washing = plainDocs
-        .filter((svc) => svc.type === "washing" || svc.type === "Washing")
-        .map((svc) => {
+        if (plainDocs.length > 0) {
+            const dbWashing = plainDocs
+                .filter((svc) => svc.type === "washing" || svc.type === "Washing")
+                .map((svc) => {
             // Handle both old structure (pricing array) and new structure (single price)
             let pricing = [];
             if (svc.pricing && Array.isArray(svc.pricing) && svc.pricing.length > 0) {
@@ -51,15 +63,22 @@ const ServicesPage = async () => {
             };
         });
 
-    const premium = plainDocs
-        .filter((svc) => svc.type === "premium")
-        .map((svc) => ({
-            title: svc.title,
-            description: svc.description,
-            image: svc.image,
-            tag: svc.tag,
-            features: svc.features || [],
-        }));
+            const dbPremium = plainDocs
+                .filter((svc) => svc.type === "premium")
+                .map((svc) => ({
+                    title: svc.title,
+                    description: svc.description,
+                    image: svc.image,
+                    tag: svc.tag,
+                    features: svc.features || [],
+                }));
+
+            if (dbWashing.length > 0) washing = dbWashing;
+            if (dbPremium.length > 0) premium = dbPremium;
+        }
+    } catch (e) {
+        console.warn("DB not available during build, using fallback services:", (e as Error).message);
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 selection:bg-primary selection:text-white pt-24 pb-20 relative overflow-hidden">
@@ -78,13 +97,13 @@ const ServicesPage = async () => {
                 </Link>
 
                 <div className="max-w-3xl mb-16">
-                    <h1 className="text-5xl md:text-6xl font-dm-serif text-black mb-6 leading-tight">
-                        Our Professional <br />
-                        <span className="text-primary italic">Detailing Services</span>
+                    <h1 className="text-4xl md:text-5xl font-dm-serif text-black mb-6 leading-tight">
+                        Car Washing Center in Satara - <br />
+                        <span className="text-primary italic">Our Detailing Services in Satara</span>
                     </h1>
                     <p className="text-lg text-gray-600 font-space border-l-4 border-primary/20 pl-6">
-                        Experience automotive excellence with our comprehensive range of services.
-                        Each treatment is meticulously designed to restore, protect, and enhance your vehicle's condition.
+                        Best <strong>car washing shop in Satara</strong> & <strong>car detailing center in Satara</strong> at Karanje Peth. 
+                        From Standard Wash ₹450 to ceramic coating & PPF - each service is designed to restore and protect your vehicle.
                     </p>
                 </div>
             </div>

@@ -20,34 +20,68 @@ const niconne = Niconne({
 });
 
 export const metadata: Metadata = {
-  title: "CAR STYLE | Premium Detailing Studio",
-  description: "CAR STYLE offers professional car care that keeps your vehicle looking pristine. Premium washing, detailing, and protection services.",
-  keywords: "car detailing, car washing, car care in satara, premium detailing studio, ceramic coating, car protection, luxury car care,book car wash in Satara,car wash near me Satara,affordable car wash Satara,bike washing service Satara,car polishing Satara,top car wash services in Satara, professional car care, car maintenance, car care services in satara, car care near me, car care in satara, car wash satara, car cleaning satara, doorstep car wash satara, car polish satara",
-  authors: [{ name: "CAR STYLE" }],
-  creator: "Tanvir Mujawar",
+  title: {
+    default: "Best Car Washing Center in Satara | Car Detailing Shop - CAR STYLE",
+    template: "%s | CAR STYLE - Car Washing & Detailing Center Satara",
+  },
+  description:
+    "No.1 Car Washing Center in Satara | CAR STYLE - Best car washing shop, detailing center & car care studio in Satara. Premium wash from ₹450, ceramic coating, PPF, interior detailing at Karanje Peth. Call 7058623593.",
+  keywords: [
+    "car washing center in Satara",
+    "car washing shop in Satara",
+    "car detailing center in Satara",
+    "best car washing center in Satara",
+    "car wash in Satara",
+    "car wash near me Satara",
+    "car detailing shop in Satara",
+    "ceramic coating in Satara",
+    "PPF coating in Satara",
+    "car cleaning center Satara",
+    "car polishing center Satara",
+    "car care center Satara Karanje Peth",
+  ],
+  authors: [{ name: "CAR STYLE", url: "https://car-style-2.vercel.app" }],
+  creator: "CAR STYLE",
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
-    title: "CAR STYLE - Premium Car Detailing Studio in Satara",
-    description: "Professional car detailing, washing, and protection services in Satara. Experience luxury car care with ceramic coating, interior detailing, and doorstep service.",
-    url: "https://carstyle-satara.com",
-    siteName: "CAR STYLE Satara",
+    title: "Best Car Washing Center in Satara | CAR STYLE Detailing Shop",
+    description:
+      "Best car washing shop & detailing center in Satara. Premium wash, ceramic coating, PPF & interior detailing at Karanje Peth. 127+ 5-star reviews.",
+    url: "https://car-style-2.vercel.app",
+    siteName: "CAR STYLE - Car Washing & Detailing Center Satara",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "CAR STYLE - Premium Car Detailing Studio Satara",
+        alt: "Best Car Washing Center in Satara - CAR STYLE Detailing Shop Karanje Peth",
       },
     ],
     locale: "en_IN",
     type: "website",
   },
-  metadataBase: new URL("https://carstyle-satara.com"),
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Car Washing Center in Satara | CAR STYLE",
+    description: "Best car washing shop & detailing center in Satara. Wash from ₹450. Call 7058623593.",
+    images: ["/og-image.jpg"],
+  },
+  metadataBase: new URL("https://car-style-2.vercel.app"),
   alternates: {
-    canonical: "https://carstyle-satara.com",
+    canonical: "https://car-style-2.vercel.app",
+  },
+  verification: {
+    google: "pending-verification",
   },
 };
 
@@ -58,6 +92,73 @@ import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["AutoWash", "AutoDetailing", "LocalBusiness"],
+      "@id": "https://car-style-2.vercel.app/#business",
+      name: "CAR STYLE - Best Car Washing Center in Satara",
+      alternateName: "CAR STYLE Premium Detailing Studio - Car Washing Shop Satara",
+      image: "https://car-style-2.vercel.app/logo1.PNG",
+      url: "https://car-style-2.vercel.app",
+      telephone: "+917058623593",
+      priceRange: "₹450 - ₹7000",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "307/24 Basappa peth, Opp. To Yashwant Hospital, Karanje Peth",
+        addressLocality: "Satara",
+        addressRegion: "Maharashtra",
+        postalCode: "415001",
+        addressCountry: "IN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 17.693748,
+        longitude: 73.995262,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "127",
+        bestRating: "5",
+      },
+      areaServed: { "@type": "City", name: "Satara" },
+      keywords:
+        "car washing center in Satara, car washing shop in Satara, car detailing center in Satara, best car washing center in Satara, car wash near me Satara",
+      sameAs: ["https://www.instagram.com/car_style___/"],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Car Washing & Detailing Services Satara",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Standard Wash Satara", description: "Car washing center in Satara - Standard Wash from ₹450" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ceramic Coating Satara" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "PPF Coating Satara" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Detailing Satara" } },
+        ],
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://car-style-2.vercel.app" },
+        { "@type": "ListItem", position: 2, name: "Services - Car Washing Center Satara", item: "https://car-style-2.vercel.app/services" },
+        { "@type": "ListItem", position: 3, name: "Gallery", item: "https://car-style-2.vercel.app/gallery" },
+        { "@type": "ListItem", position: 4, name: "Contact - Car Detailing Shop Satara", item: "https://car-style-2.vercel.app/contact" },
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,6 +167,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${niconne.variable}`}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <TopInfoBar />
         <Navbar />
         {children}

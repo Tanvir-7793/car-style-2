@@ -62,25 +62,33 @@ const Footer = () => {
                     <ul className="space-y-6 text-gray-400 text-sm">
                         <li className="flex gap-4">
                             <MapPin className="text-primary w-5 h-5 shrink-0" />
-                            <span>307/24 Basappa peth, <br />Opp. To Yashwant Hospital, <br />Karanje Peth, Satara</span>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=307/24+Basappa+peth,+Opp.+Yashwant+Hospital,+Karanje+Peth,+Satara,+Maharashtra+415001" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">307/24 Basappa peth, <br />Opp. To Yashwant Hospital, <br />Karanje Peth, Satara</a>
                         </li>
                         <li className="flex gap-4">
                             <Phone className="text-primary w-5 h-5 shrink-0" />
-                            <span>+91 7058623593 <br />+91 7058943593</span>
+                            <span><a href="tel:+917058623593" className="hover:text-white transition-colors">+91 7058623593</a> <br /><a href="tel:+917058943593" className="hover:text-white transition-colors">+91 7058943593</a></span>
                         </li>
                         <li className="flex gap-4">
                             <Mail className="text-primary w-5 h-5 shrink-0" />
-                            <span>carstyle3131@gmail.com</span>
+                            <a href="mailto:carstyle3131@gmail.com" className="hover:text-white transition-colors">carstyle3131@gmail.com</a>
                         </li>
                         <li className="flex gap-4">
                             <span className="text-primary text-lg font-bold shrink-0">🌐</span>
-                            <span>www.carstyle.com</span>
+                            <a href="https://car-style-2.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">car-style-2.vercel.app</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-8 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+            <div className="max-w-7xl mx-auto px-8 pt-6 flex flex-wrap justify-center gap-4 text-gray-400 text-xs">
+                <Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <span className="text-white/10">|</span>
+                <Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link>
+                <span className="text-white/10">|</span>
+                <Link href="/refund-policy" className="hover:text-primary transition-colors">Cancellation & Refund</Link>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-8 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
                 <p>© 2026 CAR STYLE Detailer Studio. All Rights Reserved.</p>
                 <p>
                     Built with <span className="text-red-500">♥</span> by{' '}

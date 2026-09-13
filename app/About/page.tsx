@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { JSX } from "react";
 import Image from "next/image";
 import TeamCard from "@/components/TeamCard";
@@ -15,6 +16,12 @@ import {
     Shield,
     Users
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Best Car Washing Center in Satara | CAR STYLE Story",
+  description: "About CAR STYLE - Best car washing center & detailing shop in Satara (Karanje Peth). Our story, expert team & why we are the top car detailing center in Satara.",
+};
+
 export default function About(): JSX.Element {
   return (
     <>
@@ -23,16 +30,16 @@ export default function About(): JSX.Element {
       <section className="relative h-[500px] md:*:h-[600px]  overflow-hidden">
         <Image
           src="/AboutPage.jpg"
-          alt="Car Wash"
+          alt="Best car washing center in Satara - CAR STYLE team at Karanje Peth studio"
           fill
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-white text-center px-4">
-          <h1 className="text-4xl font-bold drop-shadow-2xl">Our Passion for Perfection</h1>
+          <h1 className="text-4xl font-bold drop-shadow-2xl">Best Car Washing Center in Satara - Our Story</h1>
           <p className="mt-4 text-lg drop-shadow-lg">
-            Redefining automotive care in Satara since day one. More than a wash—we breathe new life into every car.
+            Satara's most trusted car detailing shop in Karanje Peth - redefining car washing & detailing since day one.
           </p>
         </div>
       </section>

@@ -23,7 +23,7 @@ const whyUsItems = [
 
 const WhyUs = () => {
     return (
-        <section id="why-us" className="py-24 bg-white">
+        <section id="why-us" className="py-24 bg-white scroll-mt-20">
             <div className="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div className="lg:w-1/2">
                     <ScrollFloat
