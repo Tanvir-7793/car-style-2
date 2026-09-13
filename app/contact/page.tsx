@@ -17,8 +17,10 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { PiNumberOne } from "react-icons/pi";
+import { useI18n } from "@/lib/i18n";
 
 const ContactPage = () => {
+    const { t } = useI18n();
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -134,16 +136,14 @@ const ContactPage = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-                        Contact Best Car Washing Center in Satara
+                        {t("contact.badge")}
                     </span>
                     <h1 className="text-4xl md:text-6xl font-dm-serif text-gray-900 mb-6">
-                        Contact Best <br />
-                        <span className="text-primary italic">Car Washing Shop in Satara</span>
+                        {t("contact.heading1")} <br />
+                        <span className="text-primary italic">{t("contact.heading2")}</span>
                     </h1>
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-                        Reach our <strong>car detailing center in Satara</strong> at Karanje Peth - call{" "}
-                        <a href="tel:+917058623593" className="text-primary font-bold hover:underline">7058623593</a> for the
-                        best car washing & detailing services in Satara.
+                        {t("contact.headingDesc")}
                     </p>
                 </motion.div>
             </section>
@@ -154,7 +154,7 @@ const ContactPage = () => {
 
                     {/* 2. Contact Information Section */}
                     <section className="bg-white rounded-3xl p-8 md:p-10 border border-black/5 shadow-sm">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-8">{t("contact.infoTitle")}</h2>
 
                         <div className="space-y-8">
                             <div className="flex gap-5 group">
@@ -162,7 +162,7 @@ const ContactPage = () => {
                                     <MapPin className="text-primary w-5 h-5" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Visit Our Studio</p>
+                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t("contact.visit")}</p>
                                     <p className="text-gray-800 font-semibold leading-relaxed">
                                         307/24 Basappa peth, Opp. Yashwant Hospital, <br />
                                         Karanje Peth, Satara, Maharashtra 415001
@@ -175,7 +175,7 @@ const ContactPage = () => {
                                     <Phone className="text-primary w-5 h-5" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Call Us Anywhere</p>
+                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t("contact.callNow")}</p>
                                     <p className="text-gray-800 font-bold text-xl">+91 7058623593</p>
                                     <p className="text-gray-500 text-sm">+91 7058943593</p>
                                 </div>
@@ -206,25 +206,25 @@ const ContactPage = () => {
 
                     {/* 5. Quick Action Buttons */}
                     <section className="space-y-4">
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] px-2 mb-4">Quick Actions</p>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] px-2 mb-4">{t("contact.quickActions")}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <a
                                 href="tel:+917058623593"
                                 className="flex items-center justify-center gap-3 bg-black text-white py-5 rounded-2xl font-bold hover:bg-primary transition-all shadow-xl active:scale-95"
                             >
-                                <Phone className="w-5 h-5" /> Call Now
+                                <Phone className="w-5 h-5" /> {t("contact.callNow")}
                             </a>
                             <a
                                 href="https://wa.me/917058623593"
                                 className="flex items-center justify-center gap-3 bg-[#25D366] text-white py-5 rounded-2xl font-bold hover:bg-[#20ba59] transition-all shadow-xl active:scale-95"
                             >
-                                <MessageCircle className="w-5 h-5" /> WhatsApp
+                                <MessageCircle className="w-5 h-5" /> {t("contact.whatsapp")}
                             </a>
                             <Link
                                 href="/booking"
                                 className="sm:col-span-2 flex items-center justify-center gap-3 border-2 border-primary text-primary py-5 rounded-2xl font-bold hover:bg-primary hover:text-white transition-all shadow-lg active:scale-95"
                             >
-                                <Calendar className="w-5 h-5" /> Book Your Service
+                                <Calendar className="w-5 h-5" /> {t("contact.bookService")}
                             </Link>
                         </div>
                     </section>
@@ -262,14 +262,14 @@ const ContactPage = () => {
                     {/* 4. Contact Form Section */}
                     <section className="bg-white rounded-3xl p-8 md:p-10 border border-black/5 shadow-sm">
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-2">Send us a Message</h2>
-                            <p className="text-gray-500 text-sm">We reply within 10 minutes during working hours.</p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("contact.sendMessage")}</h2>
+                            <p className="text-gray-500 text-sm">{t("contact.reply")}</p>
                         </div>
 
                         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name *</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.fullName")}</label>
                                     <input
                                         type="text"
                                         name="name"
@@ -285,7 +285,7 @@ const ContactPage = () => {
                                     )}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Phone Number *</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.phone")}</label>
                                     <input
                                         type="tel"
                                         name="phone"
@@ -304,7 +304,7 @@ const ContactPage = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Subject</label>
+                                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("contact.subject")}</label>
                                 <select
                                     name="subject"
                                     className="w-full bg-gray-50 border border-black/5 rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none appearance-none"
@@ -320,7 +320,7 @@ const ContactPage = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Message</label>
+                                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("contact.message")}</label>
                                 <textarea
                                     rows={4}
                                     name="message"
@@ -342,7 +342,7 @@ const ContactPage = () => {
                                 className={`w-full bg-primary text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:bg-blue-600 transition-all flex items-center justify-center gap-3 ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                                     }`}
                             >
-                                {isSubmitting ? "Sending..." : "Request a Callback"}
+                                {isSubmitting ? "Sending..." : t("contact.requestCallback")}
                                 <ArrowRight className="w-5 h-5" />
                             </motion.button>
 

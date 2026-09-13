@@ -14,6 +14,7 @@ import {
   Grid3X3,
   SlidersHorizontal,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 interface GalleryItem {
   _id: string;
@@ -24,6 +25,7 @@ interface GalleryItem {
 }
 
 export default function GalleryPage() {
+  const { t } = useI18n();
   const [images, setImages] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -161,7 +163,7 @@ export default function GalleryPage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <span className="inline-flex items-center gap-2 text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-6 bg-primary/10 px-5 py-2 rounded-full border border-primary/20 backdrop-blur-sm">
-              <Sparkles size={13} className="animate-pulse" /> Our Portfolio
+              <Sparkles size={13} className="animate-pulse" /> {t("gallery.badge")}
             </span>
           </motion.div>
 
@@ -171,9 +173,9 @@ export default function GalleryPage() {
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             className="text-5xl sm:text-6xl md:text-7xl font-bold mb-5 leading-[1.1] tracking-tight"
           >
-            Car Care{" "}
+            {t("gallery.title1")}{" "}
             <span className="text-primary italic font-niconne text-6xl sm:text-7xl md:text-8xl">
-              Gallery
+              {t("gallery.title2")}
             </span>
           </motion.h1>
 
@@ -183,8 +185,7 @@ export default function GalleryPage() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="text-gray-400 max-w-xl mx-auto text-base sm:text-lg leading-relaxed"
           >
-            Browse our latest detailing work — every car treated like it&apos;s
-            our own.
+            {t("gallery.desc")}
           </motion.p>
 
           {/* Stats row */}
