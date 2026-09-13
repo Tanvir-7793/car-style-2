@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Play, Instagram, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import Image from "next/image";
 import ScrollFloat from "./ScrollFloat";
+import { useI18n } from "@/lib/i18n";
 
 const galleryItems = [
   {
@@ -63,6 +64,7 @@ const galleryItems = [
 ];
 
 const VideoGallery = () => {
+  const { t } = useI18n();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isInView, setIsInView] = useState(false);
@@ -178,13 +180,13 @@ const VideoGallery = () => {
           stagger={0.03}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-            See Our Craftsmanship
+            {t("video.badge")}
           </span>
           <h2 className="text-4xl md:text-5xl font-dm-serif text-gray-900 mb-4">
-            Transformations <span className="text-primary italic">In Action</span>
+            {t("video.title")}
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Watch how we turn ordinary vehicles into masterpieces. Tap to play — saves data until you watch.
+            {t("video.desc")}
           </p>
         </ScrollFloat>
 
@@ -224,7 +226,7 @@ const VideoGallery = () => {
                           <Play className="w-7 h-7 fill-primary ml-0.5" />
                         </div>
                         <span className="text-xs font-bold tracking-widest uppercase bg-black/50 backdrop-blur px-3 py-1.5 rounded-full">
-                          Tap to Play • Saves Data
+                          {t("video.tap")}
                         </span>
                       </div>
                       {/* Text still visible */}
@@ -358,7 +360,7 @@ const VideoGallery = () => {
             whileTap={{ scale: 0.97 }}
           >
             <Instagram className="w-4 h-4" />
-            Follow Us on Instagram
+            {t("video.follow")}
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </motion.a>
         </motion.div>

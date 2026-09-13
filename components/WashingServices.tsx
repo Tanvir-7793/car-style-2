@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CheckCircle2, ChevronRight } from "lucide-react";
 import ScrollFloat from "@/components/ScrollFloat";
 import { washingServices as defaultWashingServices } from "@/data/services";
+import { useI18n, toLocalDigits } from "@/lib/i18n";
 
 type WashingService = (typeof defaultWashingServices)[number];
 
@@ -13,6 +14,7 @@ interface WashingServicesProps {
 }
 
 const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWashingServices }) => {
+    const { t, locale } = useI18n();
     const [activeService, setActiveService] = useState(0);
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                                 }`}
                         >
 
-                            {service.title}
+                            {t(service.title)}
 
                         </button>
 
@@ -58,13 +60,13 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                             stagger={0.03}
                         >
                             <span className="text-primary font-bold uppercase tracking-widest text-[10px] md:text-xs block mb-1">
-                                {services[activeService].subtitle}
+                                {t(services[activeService].subtitle)}
                             </span>
                             <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
-                                {services[activeService].title}
+                                {t(services[activeService].title)}
                             </h2>
                             <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                            {services[activeService].description}
+                            {t(services[activeService].description)}
                         </p>
                         </ScrollFloat>
 
@@ -75,10 +77,10 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                             {services[activeService].pricing.map((tier, i) => (
                                 <div key={i} className="bg-gray-50 p-3 md:p-4 rounded-xl border border-black/5 text-center group hover:bg-primary transition-all duration-300">
                                     <div className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest mb-1 text-gray-400 group-hover:text-white/70">
-                                        {tier.size}
+                                        {t(tier.size)}
                                     </div>
                                     <div className="text-sm md:text-xl font-bold text-gray-900 group-hover:text-white">
-                                        Rs.{tier.price}
+                                        ₹{toLocalDigits(tier.price, locale)}
                                     </div>
                                 </div>
                             ))}
@@ -89,14 +91,14 @@ const WashingServices: React.FC<WashingServicesProps> = ({ services = defaultWas
                             {services[activeService].features.map((item, i) => (
                                 <div key={i} className="flex items-center gap-2 md:gap-3 group border-b border-black/5 pb-1">
                                     <CheckCircle2 className="text-primary w-3.5 md:w-5 h-3.5 md:h-5 shrink-0" />
-                                    <span className="text-[11px] md:text-[14px] font-semibold text-gray-700 truncate">{item}</span>
+                                    <span className="text-[11px] md:text-[14px] font-semibold text-gray-700 truncate">{t(item)}</span>
                                 </div>
                             ))}
                         </div>
 
                         <Link href="/booking">
                             <button className="bg-primary hover:bg-blue-600 text-white px-8 md:px-10 py-3 md:py-4 rounded font-bold transition-all inline-flex items-center gap-2 group shadow-xl shadow-primary/20 text-xs md:text-base">
-                                Book This Wash
+                                {t("cta.bookWash")}
                                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </Link>

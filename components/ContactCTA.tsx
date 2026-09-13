@@ -2,8 +2,10 @@
 import React from "react";
 import { Phone, MapPin, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { useI18n } from "@/lib/i18n";
 
 const ContactCTA = () => {
+    const { t } = useI18n();
     return (
         <section id="contact" className="py-24 bg-blue-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -18,14 +20,14 @@ const ContactCTA = () => {
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
                                 <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-                                    Get in Touch
+                                    {t("contact.badge")}
                                 </span>
                                 <h2 className="text-4xl md:text-5xl font-dm-serif mb-6 leading-tight text-gray-900">
-                                    Have Questions? <br />
-                                    <span className="text-primary italic">Talk to Our Experts</span>
+                                    {t("contact.title1")} <br />
+                                    <span className="text-primary italic">{t("contact.title2")}</span>
                                 </h2>
                                 <p className="text-gray-500 text-lg mb-10 max-w-md leading-relaxed">
-                                    Whether you need a simple wash or a full ceramic coating, our team is ready to assist you with the best care for your vehicle. Inquiry now for a custom quote.
+                                    {t("contact.desc")}
                                 </p>
 
                                 <div className="space-y-8 mb-12">
@@ -34,7 +36,7 @@ const ContactCTA = () => {
                                             <Phone className="text-primary w-6 h-6" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5">Emergency Inquiry</p>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5">{t("contact.emergency")}</p>
                                             <p className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">+91 7058623593</p>
                                             <p className="text-sm text-gray-500 font-medium mt-0.5">+91 7058943593</p>
                                         </div>
@@ -45,7 +47,7 @@ const ContactCTA = () => {
                                             <MapPin className="text-primary w-6 h-6" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5">Visit Studio</p>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5">{t("contact.visit")}</p>
                                             <p className="text-base font-semibold text-gray-800 leading-relaxed max-w-[280px]">
                                                 307/24 Basappa peth, Opp. To Yashwant Hospital, Karanje Peth, Satara
                                             </p>
@@ -60,12 +62,12 @@ const ContactCTA = () => {
                                         whileTap={{ scale: 0.98 }}
                                         className="inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-xl font-bold text-base shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-primary transition-all group"
                                     >
-                                        Call Now for Inquiry
+                                        {t("contact.call")}
                                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </motion.a>
 
                                     <Link href="/services" className="inline-flex items-center justify-center gap-2 border border-black/10 px-8 py-4 rounded-xl font-bold text-base hover:bg-gray-50 transition-all">
-                                        View All Services
+                                        {t("contact.viewServices")}
                                     </Link>
                                 </div>
                             </motion.div>
@@ -95,7 +97,7 @@ const ContactCTA = () => {
                                 {/* Floating Label */}
                                 <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-xl flex items-center justify-between">
                                     <div>
-                                        <p className="text-[10px] text-primary font-bold uppercase tracking-wider mb-0.5">Studio Location</p>
+                                        <p className="text-[10px] text-primary font-bold uppercase tracking-wider mb-0.5">{t("contact.studioLocation")}</p>
                                         <p className="text-xs font-bold text-gray-900">Karanje Peth, Satara</p>
                                     </div>
                                     <a

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const faqs = [
   {
@@ -30,16 +31,17 @@ const faqs = [
 ];
 
 export default function FAQSection() {
+  const { t } = useI18n();
   const [open, setOpen] = useState<number | null>(0);
 
-  // FAQ JSON-LD for rich results
+  // FAQ JSON-LD for rich results - translated
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map((f) => ({
       "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
+      name: t(f.q),
+      acceptedAnswer: { "@type": "Answer", text: t(f.a) },
     })),
   };
 
@@ -49,10 +51,10 @@ export default function FAQSection() {
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
-            FAQ - Car Washing Center Satara
+            {t("faq.badge")}
           </span>
           <h2 className="text-3xl md:text-4xl font-dm-serif text-gray-900 mb-3">
-            Best Car Washing Center in Satara - FAQs
+            {t("faq.title")}
           </h2>
           <p className="text-gray-500 text-sm md:text-base">
             Answers about our car washing shop & detailing center in Satara (Karanje Peth)
@@ -67,13 +69,13 @@ export default function FAQSection() {
                 className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-white transition-colors"
                 aria-expanded={open === i}
               >
-                <span className="font-semibold text-gray-900 text-sm md:text-base pr-2">{f.q}</span>
+                <span className="font-semibold text-gray-900 text-sm md:text-base pr-2">{t(f.q)}</span>
                 <ChevronDown
                   className={`w-5 h-5 text-primary shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`}
                 />
               </button>
               {open === i && (
-                <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-black/5 bg-white pt-4">{f.a}</div>
+                <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-black/5 bg-white pt-4">{t(f.a)}</div>
               )}
             </div>
           ))}

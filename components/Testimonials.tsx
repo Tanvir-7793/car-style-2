@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Star, Quote } from "lucide-react";
 import ScrollFloat from "./ScrollFloat";
+import { useI18n } from "@/lib/i18n";
 
 const Testimonials = () => {
+  const { t } = useI18n();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -97,13 +99,13 @@ const Testimonials = () => {
           stagger={0.03}
         >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-              Customer Stories
+              {t("test.badge")}
             </span>
             <h2 className="text-4xl md:text-5xl font-dm-serif text-gray-900 mb-6">
-              What Our <span className="text-primary italic">Customers Say</span>
+              {t("test.title")}
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our valued customers have to say about their experience with CAR STYLE.
+              {t("test.desc")}
             </p>
           </ScrollFloat>
         </div>
@@ -127,7 +129,7 @@ const Testimonials = () => {
                     {/* Testimonial Content */}
                     <blockquote className="text-center mb-8">
                       <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 italic">
-                        "{testimonial.text}"
+                        "{t(testimonial.text)}"
                       </p>
                       
                       {/* Rating */}
@@ -146,7 +148,7 @@ const Testimonials = () => {
                         </div>
                         <div className="text-left">
                           <div className="font-bold text-gray-900">{testimonial.name}</div>
-                          <div className="text-sm text-gray-500">{testimonial.service}</div>
+                          <div className="text-sm text-gray-500">{t(testimonial.service)}</div>
                         </div>
                       </div>
                     </blockquote>

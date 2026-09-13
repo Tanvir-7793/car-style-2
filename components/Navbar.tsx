@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useI18n } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
     const pathname = usePathname();
@@ -24,13 +26,14 @@ const Navbar = () => {
         setIsMenuOpen(false);
     }, [pathname]);
 
+    const { t } = useI18n();
     const navLinks = [
-        { name: "Home", href: "/" },
-        { name: "Services", href: "/services" },
-        { name: "Gallery", href: "/gallery" },
-        { name: "About", href: "/About" },
-        { name: "Why Us", href: "/#why-us" },
-        { name: "Contact", href: "/contact" },
+        { name: t("nav.home"), href: "/" },
+        { name: t("nav.services"), href: "/services" },
+        { name: t("nav.gallery"), href: "/gallery" },
+        { name: t("nav.about"), href: "/About" },
+        { name: t("nav.whyUs"), href: "/#why-us" },
+        { name: t("nav.contact"), href: "/contact" },
     ];
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -79,10 +82,11 @@ const Navbar = () => {
                     })}
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-3">
+                    <LanguageSwitcher />
                     <Link href="/booking">
                         <button className="hidden sm:block bg-black text-white px-5 md:px-6 py-2 md:py-2.5 rounded text-xs md:text-sm font-bold hover:bg-primary transition-all shadow-md active:scale-95">
-                            Book Now
+                            {t("nav.bookNow")}
                         </button>
                     </Link>
 

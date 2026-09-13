@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Serif_Display, Niconne } from "next/font/google";
+import { Space_Grotesk, DM_Serif_Display, Niconne, Mukta, Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -17,6 +17,21 @@ const niconne = Niconne({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-niconne",
+});
+
+// Premium Devanagari fonts - Mukta (sans, matches Space Grotesk) + Tiro (serif, matches DM Serif)
+const mukta = Mukta({
+  subsets: ["devanagari", "latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-mukta",
+  display: "swap",
+});
+
+const tiroHindi = Tiro_Devanagari_Hindi({
+  subsets: ["devanagari"],
+  weight: ["400"],
+  variable: "--font-tiro",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -90,6 +105,7 @@ import TopInfoBar from "@/components/TopInfoBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import { LanguageProvider } from "@/lib/i18n";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -165,17 +181,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${niconne.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${niconne.variable} ${mukta.variable} ${tiroHindi.variable}`}>
       <body className="antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <TopInfoBar />
-        <Navbar />
-        {children}
-        <FloatingCallButton />
-        <Footer />
+        <LanguageProvider>
+          <TopInfoBar />
+          <Navbar />
+          {children}
+          <FloatingCallButton />
+          <Footer />
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

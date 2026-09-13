@@ -17,6 +17,8 @@
   --font-space: var(--font-space);
   --font-dm-serif: var(--font-dm-serif);
   --font-niconne: var(--font-niconne);
+  --font-mukta: var(--font-mukta);
+  --font-tiro: var(--font-tiro);
   --animate-spin-slow: spin 8s linear infinite;
 }
 
@@ -75,4 +77,20 @@ video {
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Devanagari font switch - premium Marathi/Hindi */
+html.devanagari body {
+  font-family: var(--font-mukta), var(--font-space), system-ui, sans-serif;
+}
+html.devanagari .font-dm-serif,
+html.devanagari .font-niconne {
+  font-family: var(--font-tiro), var(--font-mukta), serif !important;
+}
+html.devanagari h1,
+html.devanagari h2,
+html.devanagari h3 {
+  font-family: var(--font-tiro), var(--font-mukta), serif;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
 }

@@ -1,27 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import ScrollFloat from "@/components/ScrollFloat";
 import { Droplets, ShieldCheck, Clock } from "lucide-react";
-
-const whyUsItems = [
-    {
-        title: "Eco-Friendly Products",
-        desc: "We use biodegradable soaps and water-saving techniques to protect the environment while protecting your car.",
-        icon: Droplets
-    },
-    {
-        title: "Expert Detailers",
-        desc: "Our team consists of certified detailing professionals who understand the science of car care.",
-        icon: ShieldCheck
-    },
-    {
-        title: "Quick Turnaround",
-        desc: "We respect your time. Our efficient processes ensure high-quality results in record time.",
-        icon: Clock
-    }
-];
+import { useI18n } from "@/lib/i18n";
 
 const WhyUs = () => {
+    const { t } = useI18n();
+    const whyUsItems = [
+        { title: t("why.ecoTitle"), desc: t("why.ecoDesc"), icon: Droplets },
+        { title: t("why.expertTitle"), desc: t("why.expertDesc"), icon: ShieldCheck },
+        { title: t("why.quickTitle"), desc: t("why.quickDesc"), icon: Clock },
+    ];
     return (
         <section id="why-us" className="py-24 bg-white scroll-mt-20">
             <div className="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row-reverse items-center gap-16">
@@ -33,8 +23,8 @@ const WhyUs = () => {
                         scrollEnd='bottom bottom-=50%'
                         stagger={0.03}
                     >
-                        <span className="text-primary font-bold uppercase tracking-widest text-sm block mb-4">The Difference</span>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight">Why Car Owners Trust Us</h2>
+                        <span className="text-primary font-bold uppercase tracking-widest text-sm block mb-4">{t("why.badge")}</span>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight">{t("why.title")}</h2>
                     </ScrollFloat>
 
                     <div className="space-y-10">

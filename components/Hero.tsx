@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoLoop from "@/components/LogoLoop";
+import { useI18n } from "@/lib/i18n";
 import {
     SiBmw,
     SiMercedes,
@@ -38,6 +39,7 @@ const bgImages = [
 ];
 
 const Hero = () => {
+    const { t } = useI18n();
     const [currentBg, setCurrentBg] = useState(0);
 
     useEffect(() => {
@@ -78,24 +80,24 @@ const Hero = () => {
             <div className="relative z-10 max-w-2xl">
                 <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-5 md:mb-1 text-white">
                     <span className="font-dm-serif">CAR STYLE</span> <br />
-                    <span className="font-niconne text-5xl md:text-6xl gap-2 text-primary italic tracking-wider">Best Car Washing Center</span><br />
-                    <span className="text-2xl md:text-3xl font-bold tracking-wide text-white/90">in Satara </span>
-                    <span className="font-niconne text-3xl md:text-4xl gap-2 text-primary italic tracking-wider">— Detailing Shop</span>
+                    <span className="font-niconne text-5xl md:text-6xl gap-2 text-primary italic tracking-wider">{t("hero.title1")}</span><br />
+                    <span className="text-2xl md:text-3xl font-bold tracking-wide text-white/90">{t("hero.title2")} </span>
+                    <span className="font-niconne text-3xl md:text-4xl gap-2 text-primary italic tracking-wider">{t("hero.title3")}</span>
                 </h1>
 
                 <p className="text-base md:text-lg text-gray-300 mb-10 leading-relaxed max-w-xl">
-                    No.1 <strong className="text-white font-semibold">car detailing center in Satara</strong> at Karanje Peth. Premium wash from ₹450, ceramic coating, PPF & interior detailing. Your car deserves the best care!
+                    {t("hero.desc")}
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-18 md:mb-5">
                     <Link href="/booking">
                         <button className="bg-primary hover:bg-blue-600 text-white px-10 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30 cursor-pointer">
-                            Book Your Wash
+                            {t("hero.book")}
                         </button>
                     </Link>
                     <Link href="/services">
                         <button className="bg-white hover:bg-gray-100 text-gray-900 border border-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg cursor-pointer">
-                            View Services
+                            {t("hero.services")}
                         </button>
                     </Link>
                 </div>
