@@ -18,6 +18,7 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useI18n, toLocalDigits } from "@/lib/i18n";
 
 // Service Data
 const services = [
@@ -52,6 +53,7 @@ const timeSlots = [
 ];
 
 const BookingPage = () => {
+    const { t, locale } = useI18n();
     // Form State
     const [selectedService, setSelectedService] = useState(services[0]);
     const [selectedSize, setSelectedSize] = useState(carSizes[0]);
@@ -194,10 +196,10 @@ const BookingPage = () => {
                 <div className="mb-12">
                     <Link href="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-primary transition-colors text-sm font-bold mb-6 group">
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        Back to Home
+                        {t("common.backToHome")}
                     </Link>
-                    <h1 className="text-4xl md:text-5xl font-dm-serif text-gray-900 mb-4">Book Your <span className="text-primary italic">Service</span></h1>
-                    <p className="text-gray-500 max-w-xl">Complete the form below to schedule your premium car care session.<span className="text-primary font-bold">No advance payment required.</span> Secure your slot now and our team will contact you shortly.</p>
+                    <h1 className="text-4xl md:text-5xl font-dm-serif text-gray-900 mb-4">{t("booking.heading")}</h1>
+                    <p className="text-gray-500 max-w-xl">{t("booking.subdesc")}</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
@@ -208,12 +210,12 @@ const BookingPage = () => {
                         <section className="bg-white rounded-3xl p-8 border border-black/5 shadow-sm">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">1</div>
-                                <h2 className="text-xl font-bold text-gray-900">Select Service & Vehicle</h2>
+                                <h2 className="text-xl font-bold text-gray-900">{t("booking.step1")}</h2>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Select Service</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.selectService")}</label>
                                     <select
                                         className="w-full bg-gray-50 border border-black/5 rounded-xl px-4 py-4 text-gray-900 font-semibold focus:ring-2 focus:ring-primary/20 outline-none appearance-none"
                                         value={selectedService.id}
@@ -221,14 +223,14 @@ const BookingPage = () => {
                                     >
                                         {services.map(s => (
                                             <option key={s.id} value={s.id}>
-                                                {s.name}{s.price ? ` (Starts at ₹${s.price})` : ''}
+                                                {t(s.name)}{s.price ? ` (₹${toLocalDigits(s.price, locale)})` : ''}
                                             </option>
                                         ))}
                                     </select>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Vehicle Size</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.vehicleSize")}</label>
                                     <div className="flex gap-2">
                                         {carSizes.map(size => (
                                             <button
@@ -239,14 +241,14 @@ const BookingPage = () => {
                                                     : "bg-gray-50 text-gray-400 border-black/5 hover:border-black/20"
                                                     }`}
                                             >
-                                                {size.name}
+                                                {t(size.name)}
                                             </button>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Vehicle Model</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.vehicleModel")}</label>
                                     <input
                                         type="text"
                                         name="vehicleModel"
@@ -257,7 +259,7 @@ const BookingPage = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Vehicle Number (Optional)</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t("booking.vehicleNumber")}</label>
                                     <input
                                         type="text"
                                         name="vehicleNumber"
@@ -273,12 +275,12 @@ const BookingPage = () => {
                         <section className="bg-white rounded-3xl p-8 border border-black/5 shadow-sm">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">2</div>
-                                <h2 className="text-xl font-bold text-gray-900">Preferred Date & Time</h2>
+                                <h2 className="text-xl font-bold text-gray-900">{t("booking.step2")}</h2>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-4">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest block">Select Date</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest block">{t("booking.selectDate")}</label>
                                     <input
                                         type="date"
                                         className="w-full bg-gray-50 border border-black/5 rounded-xl px-4 py-4 text-gray-900 font-semibold outline-none"
@@ -289,7 +291,7 @@ const BookingPage = () => {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest block">Select Time Slot</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest block">{t("booking.selectTime")}</label>
                                     <div className="grid grid-cols-3 gap-2">
                                         {timeSlots.map(time => (
                                             <button
